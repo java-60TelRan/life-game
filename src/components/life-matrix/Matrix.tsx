@@ -15,7 +15,8 @@ const Matrix: React.FC<Props> = ({rows, columns, interval=400}) => {
         function tick() {
             setMatrix(lifeMatrix.next());
         }
-        setInterval(tick, interval);
+        const intervalId = setInterval(tick, interval);
+        return () => clearInterval(intervalId) ;
     }, [interval])
     function getCells(matrix: number[][]): React.ReactNode {
         return matrix.map((row, rowIndex) => {
